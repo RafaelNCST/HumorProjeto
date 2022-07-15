@@ -2,10 +2,10 @@ import React from 'react'
 import {View, StyleSheet} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export const RandomButton = ({color, focused}) => {
+export const Button = ({color, focused, name}) => {
     return (
         <View style={[styles.RandomButtonStyle, {backgroundColor: focused ?  '#304FFE' : 'rgba(48,79,254,0.1)'}]}>
-            <Icon name='list' color={color} size={30}/>
+            <Icon name={name} color={color} size={30}/>
         </View>
     )
 }

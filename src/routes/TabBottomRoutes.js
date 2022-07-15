@@ -2,13 +2,13 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import {AddButton} from '../components/IconsBottomTab/AddButton';
-import {HomeButton} from '../components/IconsBottomTab/HomeButton';
-import {RandomButton} from '../components/IconsBottomTab/RandomButton';
+import {Button} from '../components/IconsBottomTab/Button';
 
-import {HomeScreen} from '../screens/HomeScreen'
-import {AddHumorScreen} from '../screens/AddHumorScreen'
-import {TesteScreen} from '../screens/TesteScreen'
-import {ModalHumor} from '../screens/ModalHumorScreen'
+import {HomeScreen} from '../screens/Home'
+
+import {StackModalHumor} from './StackModal'
+
+import {CommingSoonScreen} from '../screens/CommingSoon'
 
 const Tab = createBottomTabNavigator();
 
@@ -35,22 +35,19 @@ export const TabBottomRoutes = () => {
             }}>
                 <Tab.Screen name='TabHome' component={HomeScreen} options={{
                     tabBarIcon: ({color, focused}) => (
-                        <HomeButton color={color} focused={focused}/>
+                        <Button name={'home'}  color={color} focused={focused}/>
                     )
                 }}/>
-                <Tab.Screen name='HumorScreen' component={AddHumorScreen} options={{
+                <Tab.Screen name='HumorScreen' component={StackModalHumor} options={{
                     tabBarIcon: () => (
                         <AddButton />
                     )
                 }}/>
-                <Tab.Screen name='RandomScreen' component={TesteScreen} options={{
+                <Tab.Screen name='CommingSoonScreen' component={CommingSoonScreen} options={{
                     tabBarIcon: ({color, focused}) => (
-                        <RandomButton color={color} focused ={focused}/>
+                        <Button name={'list'} color={color} focused={focused}/>
                     )
                 }}/>
-                <Tab.Screen name='ModalHumor' component={ModalHumor} options={{
-                    tabBarItemStyle:{display:'none'}
-                }} />
         </Tab.Navigator>
     )
 }

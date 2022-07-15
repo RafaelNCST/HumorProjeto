@@ -3,10 +3,10 @@ import {Text, View} from 'react-native';
 
 import { styles } from './style';
 
-export const TesteScreen = () => {
+export const CommingSoonScreen = () => {
     return (
         <View style={styles.bodyScreen}>
-            <Text>Comming soon...</Text>
+            <Text style={styles.textTeste}>Comming soon...</Text>
         </View>
     )
 }

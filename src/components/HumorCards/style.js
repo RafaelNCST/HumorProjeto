@@ -3,66 +3,80 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     humorCardBody:{
         width: '90%',
-        height: 158,
-        backgroundColor: '#FFFF',
-        borderRadius: 10,
-        elevation: 5,
-        shadowColor: '#000000',
-        alignItems: 'flex-start',
-        justifyContent: 'space-evenly',    
+        height: 150,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 20,
+        elevation: 15,
+        paddingTop: 15,
+        paddingBottom: 15,
+        paddingLeft: 28,
+        paddingRight: 28,
+        shadowColor: 'rgba(90, 108, 234, .9)',
     },
     emojiImage:{
-        width: 57,
-        height: 57,
+        width: 65,
+        height: 65,
         marginRight: 16,
     },
     containerTop:{
+        flex: 1,
         flexDirection: 'row',
-        marginLeft: 28,
     },
     containerBottom:{
+        flex: 1,
+        justifyContent: 'space-evenly',
         flexDirection: 'column',
-        marginLeft: 28,
     },
-    textCards:{
+    containerItensDate:{
+        height: 55,
+        justifyContent: 'space-evenly'
+    },
+    textDate:{
         fontFamily: 'SourceSansPro-Regular',
         color: '#ACACAC',
+        fontSize: 14,
     },
     textTime:{
         fontFamily: 'SourceSansPro-Regular',
         color: '#ACACAC',
-        fontSize: 14,
-        marginLeft: 10,
+        fontSize: 12,
+        marginLeft: 7,
     },
     containerTimeAndHumor:{
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'baseline',
     },
-    humorText:{
-        fontSize: 24,
+    textHumor:{
+        fontSize: 20,
         fontFamily: 'SourceSansPro-Bold',
     },
     containerActions:{
         flexDirection: 'row',
+        flexGrow: 1,
         alignItems: 'center',
-        marginBottom: 12.5,
-        width: '100%',
     },
     containerActionItem:{
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: 21,
     },
     textActions:{
-        fontSize: 14,
+        fontSize: 12,
         color: '#000000',
         fontFamily: 'SourceSansPro-Bold',
-        marginLeft: 8,
+        marginLeft: 9,
+    },
+    pointerActions:{
+        height: 4,
+        width: 4,
+        backgroundColor: '#000000',
+        borderRadius: 50,
+        marginLeft: 9,
+        marginRight: 9,
     },
     textDescription:{
         fontFamily: 'SourceSansPro-Regular',
         color: '#ACACAC',
-        fontSize: 13, 
-        width: 215
+        fontSize: 12, 
+        width: '100%',
     }
 })

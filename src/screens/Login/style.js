@@ -25,9 +25,10 @@ export const styles = StyleSheet.create({
       width: 321,
       marginTop: 21,
       borderRadius: 10,
-      backgroundColor: 'white',
+      backgroundColor: '#FFFFFF',
       justifyContent: 'center',
       alignItems: 'center',
+      color: '#000000',
     },
     eyeVisibilityButton:{
       position: 'absolute',

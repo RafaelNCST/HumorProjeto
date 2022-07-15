@@ -35,17 +35,17 @@ export const LoginScreen = () => {
             <Image style={styles.imageLogin} source={require('../../assets/images/timeImage.png')}/>
             <View style={styles.inputsContainer}>
                 <TextInput 
-                style={styles.inputLogin} 
-                placeholder='email'
-                value={emailInput}
-                onChangeText={value => setEmailInput(value)}
+                    style={styles.inputLogin} 
+                    placeholder='email'
+                    value={emailInput}
+                    onChangeText={value => setEmailInput(value)}
                 />
                 <TextInput 
-                style={styles.inputLogin} 
-                placeholder='senha'
-                secureTextEntry={visibility ? false : true}
-                value={passwordInput}
-                onChangeText={value => setPasswordInput(value)}
+                    style={styles.inputLogin} 
+                    placeholder='senha'
+                    secureTextEntry={visibility ? false : true}
+                    value={passwordInput}
+                    onChangeText={value => setPasswordInput(value)}
                 />
                 <TouchableOpacity style={styles.eyeVisibilityButton} onPress={() => setVisibility(!visibility)}>
                     <Icon name={visibility ? 'visibility' : 'visibility-off'} color='#000000' size={25}/>

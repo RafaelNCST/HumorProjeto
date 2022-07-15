@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { StackRoutes } from './StackRoutes';
+import { LoginStackScreen } from './StackLogin';
 
 export const Routes = () => {
     return(
         <NavigationContainer>
-            <StackRoutes />
+            <LoginStackScreen />
         </NavigationContainer>
     )
 }

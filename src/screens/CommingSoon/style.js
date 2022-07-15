@@ -5,5 +5,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    textTeste:{
+        color: '#000000',
     }
 }) 

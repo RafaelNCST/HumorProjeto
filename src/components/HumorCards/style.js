@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     humorCardBody:{
-        width: '90%',
-        height: 150,
+        width: '93%',
+        height: 140,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
         elevation: 15,
@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
         shadowColor: 'rgba(90, 108, 234, .9)',
     },
     emojiImage:{
-        width: 65,
-        height: 65,
+        width: 57,
+        height: 57,
         marginRight: 16,
     },
     containerTop:{
@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     containerItensDate:{
-        height: 55,
+        height: 50,
         justifyContent: 'space-evenly'
     },
     textDate:{
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
         fontSize: 12,
         color: '#000000',
         fontFamily: 'SourceSansPro-Bold',
-        marginLeft: 9,
+        marginLeft: 7,
     },
     pointerActions:{
         height: 4,

@@ -3,13 +3,13 @@ import {FlatList, View} from 'react-native';
 
 import { styles } from './style';
 import { HumorCard } from '../../components/HumorCards'
-import {Cards} from '../../helpers/Cards'
+import {Data} from '../../helpers/CardsData'
 
 export const AddHumorScreen = () => {
     return (
         <FlatList 
             contentContainerStyle={{paddingBottom: 18}}
-            data={Cards}
+            data={Data}
             keyExtractor={item => item.card}
             renderItem={({item}) => 
                 <View style={styles.cardContainer}>

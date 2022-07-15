@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     },
     itensContainer:{
       height: 600,
-      width: 300,
+      width: '100%',
       alignItems: 'center',
     },
     imageLogin:{
@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     },
     inputsContainer:{
       marginTop: 20,
-      marginBottom: 68,
     },
     inputLogin:{
       height: 46,
@@ -35,18 +34,25 @@ export const styles = StyleSheet.create({
       top: 98,
       right: 10,
     },
+    itensBottomContainer:{
+      height: 128,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+    },
     textError:{
       position: 'absolute',
-      top: 410,
-      left: 70,
-      color: '#ec2300',
+      left: '24%',
+      top: '25%',
+      fontSize: 16,
+      letterSpacing: 1,
+      color: '#bc0b03',
+      fontFamily: 'SourceSansPro-SemiBold',
     },
     buttonLogin:{
       width: 133,
       height: 46,
       borderRadius: 10,
-      elevation: 5,
-      shadowColor: '#000000',
       backgroundColor:'#C6CEFF',
       justifyContent: 'center',
       alignItems: 'center',

@@ -16,6 +16,7 @@ export const TabBottomRoutes = () => {
 
     return(
         <Tab.Navigator 
+            initialRouteName='HomeScreen'
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
@@ -33,12 +34,12 @@ export const TabBottomRoutes = () => {
                     backgroundColor: '#FFFF',
                 },
             }}>
-                <Tab.Screen name='TabHome' component={HomeScreen} options={{
+                <Tab.Screen name='HomeCards' component={StackModalHumor} options={{
                     tabBarIcon: ({color, focused}) => (
                         <Button name={'home'}  color={color} focused={focused}/>
                     )
                 }}/>
-                <Tab.Screen name='HumorScreen' component={StackModalHumor} options={{
+                <Tab.Screen name='HomeScreen' component={HomeScreen} options={{
                     tabBarIcon: () => (
                         <AddButton />
                     )

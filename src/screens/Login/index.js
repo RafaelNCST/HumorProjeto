@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import React, { useState } from 'react';
+import { Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {styles} from './style' 
 
@@ -9,23 +9,25 @@ export const LoginScreen = () => {
 
   const Navigation = useNavigation();
 
-  const [emailInput, setEmailInput] = useState('')
-  const [passwordInput, setPasswordInput] = useState('')
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
   
-  const [errorWarning, setErrorWarning] = useState(false)
-  const [visibility, setVisibility] = useState(false)
+  const [errorWarning, setErrorWarning] = useState(false);
+  const [visibility, setVisibility] = useState(false);
 
   const validationInputs = () => {
     const regexEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
     const regexPassword = /\w+[!@#$_]{0,3}/
 
     if(regexEmail.test(emailInput) && (regexPassword.test(passwordInput) && passwordInput.length > 4)){
-        Navigation.navigate('Home')
+        setEmailInput('');
+        setPasswordInput('');
+        Navigation.navigate('Home');
     }else{
         setErrorWarning(true);
-        setEmailInput('')
-        setPasswordInput('')
-        setTimeout(() => setErrorWarning(false), 20000)
+        setEmailInput('');
+        setPasswordInput('');
+        setTimeout(() => setErrorWarning(false), 20000);
     }
   }
 

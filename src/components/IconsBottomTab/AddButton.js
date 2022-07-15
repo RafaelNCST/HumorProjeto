@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 export const AddButton = () => {
     const Navigation = useNavigation();
     return (
-        <TouchableOpacity style={styles.AddButtonStyle} onPress={() => Navigation.navigate('HumorScreen')}>
+        <TouchableOpacity style={styles.AddButtonStyle} onPress={() => Navigation.navigate('HomeScreen')}>
             <Icon name='add' color='#FFFF' size={40} />
         </TouchableOpacity>
     )

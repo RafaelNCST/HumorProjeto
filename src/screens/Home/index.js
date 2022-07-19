@@ -1,17 +1,30 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import { styles } from './style';
+import { HumorCard } from './components/HumorCards';
+import { EmptyComponent } from './components/EmptyListCards';
+import { Data } from '../../helpers/CardsData';
 
 export const HomeScreen = () => {
     return (
-        <View style={styles.bodyScreen}>
-            <View style={styles.itensContainer}>
-                <Image source={require('../../assets/images/homeFace.png')} />
-                <Text style={styles.textEmpty}>
-                    {`Você ainda não tem nenhum\nregistro diário. Para começar,\ntoque no ícone de adicionar na tela.`}
-                </Text>
-            </View>
-        </View>
-    )
-}
+        <FlatList
+            contentContainerStyle={{ paddingBottom: 18 }}
+            ListEmptyComponent={EmptyComponent}
+            data={Data}
+            keyExtractor={(item) => item.card}
+            renderItem={({ item }) => (
+                <View style={styles.cardContainer}>
+                    <HumorCard
+                        emoji={item.emoji}
+                        date={item.date}
+                        humor={item.humor}
+                        time={item.time}
+                        description={item.description}
+                        actions={item.actions}
+                    />
+                </View>
+            )}
+        />
+    );
+};

@@ -1,13 +1,13 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    bodyScreen:{
+    bodyScreen: {
         flex: 1,
         backgroundColor: '#F1F1F1',
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-    backButton:{
+    backButton: {
         position: 'absolute',
         top: 10,
         left: 30,
@@ -18,42 +18,49 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    itensContainer:{
-        width: '90%',
+    itensContainer: {
+        width: '93%',
         height: 470,
         marginTop: 47,
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    containerDate:{
+    containerDate: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    itensDate:{
+    itensDate: {
         marginTop: 3,
         flexDirection: 'row',
         alignItems: 'center',
     },
-    textDate:{
+    textDate: {
         fontSize: 16,
         lineHeight: 24,
         marginLeft: 4,
         fontFamily: 'SourceSansPro-Regular',
         color: '#969696',
     },
-    containerHumor:{
+    containerHumor: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginVertical: 30,
     },
-    emojiImage:{
-        width: 65, 
+    emojiImage: {
+        width: 65,
         height: 65,
     },
-    textHumor:{
+    textHumor: {
         fontFamily: 'SourceSansPro-Bold',
         fontSize: 25,
     },
-    containerActions:{
+    bottomItens: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: '59%',
+        width: '100%',
+    },
+    containerActions: {
         width: '100%',
         height: 158,
         backgroundColor: '#FFFFFF',
@@ -64,7 +71,7 @@ export const styles = StyleSheet.create({
         shadowColor: 'rgba(90, 108, 234, .7)',
         elevation: 15,
     },
-    iconView:{
+    iconView: {
         width: 50,
         height: 50,
         borderRadius: 52,
@@ -72,7 +79,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    itensActions:{
+    itensActions: {
         width: 100,
         height: 75,
         marginLeft: 5,
@@ -80,12 +87,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    textActions:{
+    textActions: {
         fontFamily: 'SourceSansPro-SemiBold',
         fontSize: 14,
         color: '#000000',
     },
-    containerDescription:{
+    containerDescription: {
         width: '100%',
         height: 100,
         backgroundColor: '#FFFFFF',
@@ -97,10 +104,10 @@ export const styles = StyleSheet.create({
         elevation: 15,
         borderRadius: 20,
     },
-    textDescription:{
+    textDescription: {
         fontSize: 12,
         lineHeight: 20,
         fontFamily: 'SourceSansPro-Regular',
         color: '#000000',
-    }
-})
+    },
+});

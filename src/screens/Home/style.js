@@ -1,22 +1,9 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    bodyScreen:{
-        flex: 1,
+    cardContainer: {
         backgroundColor: '#F1F1F1',
         alignItems: 'center',
+        marginTop: 18,
     },
-    itensContainer:{
-        height: 190,
-        marginTop: 130,
-        alignItems: 'center',
-    },
-    textEmpty:{ 
-        lineHeight: 22.63,
-        fontFamily: 'SourceSansPro-Regular',
-        fontSize: 16,
-        letterSpacing: -0.3,
-        color: '#ACACAC',
-        textAlign: 'center',
-    },
-})
+});

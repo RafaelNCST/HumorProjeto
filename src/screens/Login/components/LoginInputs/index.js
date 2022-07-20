@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View, TextInput, TouchableOpacity, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { api } from '../../../../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { styles } from './style'
 
@@ -31,30 +32,26 @@ export const LoginItens = () => {
 
     const apiValidationLogin = async () => {
         try {
-            const res = await api.post('/oauth/token', {
+            await api.post('/oauth/token', {
                 grant_type: 'password',
                 email: emailInput,
                 password: passwordInput,
                 client_id: '3mGWGtxIEKyhq_HGG4cq6hsTOd_zn1SuTD3_cafjUPc',
                 client_secret: '389JLi1Nd6DQ_soCI85C57ueTlMZ_JR7pRq6SJ0GaB0',
-            })
-            Navigation.navigate('Home', {
-                acessToken: res?.data?.acess_token,
-                name: res?.data?.name,
+            }).then(async (res) => {
+                AsyncStorage.setItem('@Access_Token', res?.data?.access_token)
+                Navigation.navigate('Home')
             })
         } catch (error) {
             if (error?.response || error.response?.status === 400) {
                 setMessage('Email ou senha inválidos!')
                 setErrorWarning(true);
-                setTimeout(() => setErrorWarning(false), 10000);
             } else if (error.response?.status === 401) {
                 setMessage('Autorização negada!')
                 setErrorWarning(true);
-                setTimeout(() => setErrorWarning(false), 10000);
             } else {
                 setMessage('Falha no Login, tente mais tarde')
                 setErrorWarning(true);
-                setTimeout(() => setErrorWarning(false), 10000);
             }
         }
     };
@@ -67,7 +64,6 @@ export const LoginItens = () => {
         } else {
             setMessage('Email ou senha inválidos!')
             setErrorWarning(true);
-            setTimeout(() => setErrorWarning(false), 10000);
         }
     };
 
@@ -78,14 +74,21 @@ export const LoginItens = () => {
                     style={styles.inputLogin}
                     placeholder="email"
                     value={emailInput}
-                    onChangeText={(value) => setEmailInput(value)}
+                    onChangeText={value => {
+                        setErrorWarning(false)
+                        setEmailInput(value)
+                    }
+                    }
                 />
                 <TextInput
                     style={styles.inputLogin}
                     placeholder="senha"
                     secureTextEntry={visibility ? false : true}
                     value={passwordInput}
-                    onChangeText={(value) => setPasswordInput(value)}
+                    onChangeText={value => {
+                        setErrorWarning(false)
+                        setPasswordInput(value)
+                    }}
                 />
                 <TouchableOpacity style={styles.eyeVisibilityButton} onPress={() => setVisibility(!visibility)}>
                     <Icon

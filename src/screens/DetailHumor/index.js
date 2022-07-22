@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, TouchableOpacity } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
 import { TopItens } from './components/TopItens';
 import { BottomItens } from './components/BottomItens';
+
+import { BackButton } from '../../components/BackButton'
 
 import { api } from '../../services/api'
 
 import { styles } from './style';
 
 export const DetailHumor = () => {
-
-    const Navigation = useNavigation();
 
     const [humor, setHumor] = useState('')
     const [date, setDate] = useState('')
@@ -48,9 +47,7 @@ export const DetailHumor = () => {
 
     return (
         <View style={styles.bodyScreen}>
-            <TouchableOpacity style={styles.backButton} onPress={() => Navigation.goBack()}>
-                <Icon name="chevron-left" size={35} color="#304FFE" />
-            </TouchableOpacity>
+            <BackButton nameIcon={'chevron-left'} />
             {loading &&
                 <View style={styles.itensContainer}>
                     <TopItens date={date} humor={humor} />

@@ -34,7 +34,9 @@ export const HumorCard = ({ id, date, humor, description, actions }) => {
                         <Text style={[styles.textHumor, { color: humorItens[humor].cor }]}>
                             {humorItens[humor].estado}
                         </Text>
-                        <Text style={styles.textTime}>{`${dateValue.getHours()}:${dateValue.getMinutes()}`}</Text>
+                        <Text style={styles.textTime}>
+                            {`${String(dateValue.getHours()).padStart(2, '0')}:${String(dateValue.getMinutes()).padStart(2, '0')}`}
+                        </Text>
                     </View>
                 </View>
             </View>

@@ -3,9 +3,9 @@ export const activities = {
     shopping: { name: 'Shopping', icon: 'shopping-cart' },
     rest: { name: 'Descansar', icon: 'king-bed' },
     party: { name: 'Festa', icon: 'celebration' },
-    movies: { name: 'Filmes', icon: 'play-circle' },
+    movies: { name: 'Filmes', icon: 'live-tv' },
     good_meal: { name: 'Comer', icon: 'fastfood' },
-    games: { name: 'Jogar', icon: 'stadia-controller' },
+    games: { name: 'Jogar', icon: 'casino' },
     date: { name: 'Namorar', icon: 'favorite' },
     cooking: { name: 'Cozinhar', icon: 'restaurant' },
 }

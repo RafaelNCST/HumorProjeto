@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { LoginStackScreen } from './StackLogin';
+import { RootStackSComponent } from './RootStack';
 
 export const Routes = () => {
-    return(
+    return (
         <NavigationContainer>
-            <LoginStackScreen />
+            <RootStackSComponent />
         </NavigationContainer>
     )
 }

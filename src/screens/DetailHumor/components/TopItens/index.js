@@ -15,7 +15,7 @@ export const TopItens = ({ date, humor }) => {
             <View style={styles.itensDate}>
                 <Icon name="schedule" color="#969696" size={18} />
                 <Text style={styles.textDate}>
-                    {`${dateValue.getHours()}:${dateValue.getMinutes()}`}
+                    {`${String(dateValue.getHours()).padStart(2, '0')}:${String(dateValue.getMinutes()).padStart(2, '0')}`}
                 </Text>
             </View>
             <View style={styles.itensDate}>

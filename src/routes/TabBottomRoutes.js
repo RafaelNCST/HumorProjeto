@@ -4,13 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AddButton } from '../components/IconsBottomTab/AddButton';
 import { Button } from '../components/IconsBottomTab/Button';
 
-import { AddHumorScreen } from '../screens/AddHumor';
-
 import { DetailHumorStackRoute } from './DetailHumorStack';
-
 import { CommingSoonScreen } from '../screens/CommingSoon';
 
 const Tab = createBottomTabNavigator();
+
+const Placeholder = () => <View />
 
 export const TabBottomRoutes = () => {
     return (
@@ -43,11 +42,17 @@ export const TabBottomRoutes = () => {
                 }}
             />
             <Tab.Screen
-                name="AddCard"
-                component={AddHumorScreen}
+                name="PlusButton"
+                component={Placeholder}
                 options={{
                     tabBarIcon: () => <AddButton />,
                 }}
+                listeners={({ navigation }) => ({
+                    tabPress: (e) => {
+                        e.preventDefault();
+                        navigation.navigate('ModalAddCard')
+                    }
+                })}
             />
             <Tab.Screen
                 name="CommingSoonScreen"

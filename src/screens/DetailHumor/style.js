@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     itensContainer: {
         width: '93%',
         height: 470,
-        marginTop: 47,
         alignItems: 'center',
         justifyContent: 'space-between',
     },

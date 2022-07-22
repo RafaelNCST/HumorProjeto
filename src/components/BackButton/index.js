@@ -12,7 +12,7 @@ export const BackButton = ({ nameIcon }) => {
     return (
         <View style={styles.buttonBody}>
             <TouchableOpacity style={styles.backButton} onPress={() => Navigation.goBack()}>
-                <Icon name={nameIcon} size={30} color="#304FFE" />
+                <Icon name={nameIcon} size={25} color="#304FFE" />
             </TouchableOpacity>
         </View>
     )

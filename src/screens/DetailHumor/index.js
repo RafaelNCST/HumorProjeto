@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 
 import { TopItens } from './components/TopItens';
 import { BottomItens } from './components/BottomItens';
@@ -14,6 +14,8 @@ import { styles } from './style';
 
 export const DetailHumor = () => {
 
+    const Navigation = useNavigation();
+
     const [humor, setHumor] = useState('')
     const [date, setDate] = useState('')
     const [description, setDescription] = useState('')
@@ -22,6 +24,10 @@ export const DetailHumor = () => {
 
     const route = useRoute();
     const { id } = route.params;
+
+    const backFunction = () => {
+        Navigation.goBack();
+    }
 
     const getCardDetail = async () => {
         try {
@@ -47,7 +53,7 @@ export const DetailHumor = () => {
 
     return (
         <View style={styles.bodyScreen}>
-            <BackButton nameIcon={'chevron-left'} />
+            <BackButton nameIcon={'chevron-left'} backFunction={backFunction} />
             {loading &&
                 <View style={styles.itensContainer}>
                     <TopItens date={date} humor={humor} />

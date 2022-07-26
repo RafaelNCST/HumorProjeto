@@ -5,7 +5,7 @@ import { AddButton } from '../components/IconsBottomTab/AddButton';
 import { Button } from '../components/IconsBottomTab/Button';
 
 import { DetailHumorStackRoute } from './DetailHumorStack';
-import { CommingSoonScreen } from '../screens/CommingSoon';
+import { UserRoutes } from './UserStack'
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +16,7 @@ export const TabBottomRoutes = () => {
         <Tab.Navigator
             initialRouteName="HomeScreen"
             screenOptions={{
+                tabBarHideOnKeyboard: true,
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarActiveTintColor: '#FFFF',
@@ -56,7 +57,7 @@ export const TabBottomRoutes = () => {
             />
             <Tab.Screen
                 name="CommingSoonScreen"
-                component={CommingSoonScreen}
+                component={UserRoutes}
                 options={{
                     tabBarIcon: ({ color, focused }) => (
                         <Button name={'list'} color={color} focused={focused} />

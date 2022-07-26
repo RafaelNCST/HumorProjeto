@@ -29,9 +29,9 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         top: '25%',
-        fontSize: 16,
+        fontSize: 18,
         letterSpacing: 1,
-        color: '#bc0b03',
+        color: '#ffd700',
         fontFamily: 'SourceSansPro-SemiBold',
     },
     buttonLogin: {

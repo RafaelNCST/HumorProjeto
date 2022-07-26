@@ -34,7 +34,7 @@ export const HomeScreen = () => {
             contentContainerStyle={{ paddingBottom: 18 }}
             ListEmptyComponent={EmptyComponent}
             data={arrayCards}
-            keyExtractor={(item) => item.id}
+            keyExtractor={item => item.id}
             renderItem={({ item }) => (
                 <View style={styles.cardContainer}>
                     <HumorCard

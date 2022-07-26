@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -17,7 +18,13 @@ export const AddHumorModal = () => {
 
     const dateValue = new Date()
 
+    const Navigation = useNavigation();
+
     const [description, setDescription] = useState('');
+
+    const backFunction = () => {
+        Navigation.goBack();
+    }
 
     const buttonAddCard = async () => {
         try {
@@ -42,7 +49,7 @@ export const AddHumorModal = () => {
     return (
         <ScrollView>
             <View style={styles.bodyScreen}>
-                <BackButton nameIcon={'close'} />
+                <BackButton nameIcon={'close'} backFunction={backFunction} />
                 <View style={styles.topItens}>
                     <Text style={styles.textTitle}>
                         Como você está?

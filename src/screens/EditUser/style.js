@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    bodyScreen: {
+        flex: 1,
+    },
     contentView: {
         height: 700,
     },
@@ -33,12 +36,11 @@ export const styles = StyleSheet.create({
     },
     inputInfos: {
         width: 320,
-        height: 40,
+        height: 42,
         backgroundColor: '#FFFFFF',
         paddingHorizontal: 10,
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: '#000000',
     },
     textInput: {
         alignSelf: 'flex-start',
@@ -60,5 +62,13 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         lineHeight: 19,
         color: '#FFFFFF',
+    },
+    messageError: {
+        color: '#e32636',
+        fontSize: 15,
+        fontFamily: 'SourceSansPro-Regular',
+        position: 'absolute',
+        alignSelf: 'center',
+        bottom: '21%',
     }
 })

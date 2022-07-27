@@ -6,7 +6,7 @@ import { Data } from '../../../../helpers/DropData'
 import { styles } from './style';
 import { Genders } from '../../../../helpers/genders'
 
-export const ModalPickGenderInput = ({ callBackGenderSelected }) => {
+export const ModalPickGenderInput = ({ error, callBackGenderSelected }) => {
 
     const [visible, setVisible] = useState(false);
     const [selected, setSelected] = useState('Escolha seu gênero')
@@ -20,12 +20,24 @@ export const ModalPickGenderInput = ({ callBackGenderSelected }) => {
     return (
         <>
             <TouchableHighlight
-                style={styles.listGender}
+                style={
+                    [
+                        styles.listGender,
+                        { borderColor: error && selected === 'Escolha seu gênero' ? '#e32636' : '#000000' }
+                    ]
+                }
                 onPress={() => setVisible(true)}
                 underlayColor={'rgba(0,0,0,0.5)'}
             >
                 <View style={styles.buttonIconsInput}>
-                    <Text style={styles.textInput}>{selected}</Text>
+                    <Text
+                        style={
+                            [
+                                styles.textInput,
+                                { color: selected === 'Escolha seu gênero' ? '#A9A9A9' : '#000000' }
+                            ]
+                        }
+                    >{selected}</Text>
                     <Icon name='keyboard-arrow-down' size={40} color='#000000' />
                 </View>
             </TouchableHighlight>

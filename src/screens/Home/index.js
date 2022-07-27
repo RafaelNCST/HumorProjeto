@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, BackHandler, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { styles } from './style';
@@ -28,6 +28,7 @@ export const HomeScreen = () => {
     useEffect(() => {
         getCards();
     }, [arrayCards])
+
 
     return (
         <FlatList

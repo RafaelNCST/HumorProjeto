@@ -64,6 +64,5 @@ export const styles = StyleSheet.create({
     textInput: {
         fontFamily: 'SourceSansPro-Regular',
         fontSize: 16,
-        color: '#000000',
     },
 })

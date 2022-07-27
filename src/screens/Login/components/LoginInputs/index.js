@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native'
+import * as Animatable from 'react-native-animatable'
+import { View, TextInput, TouchableOpacity, Text, ActivityIndicator } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { api } from '../../../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,8 +12,8 @@ export const LoginItens = () => {
 
     const Navigation = useNavigation();
 
-    const [emailInput, setEmailInput] = useState('');
-    const [passwordInput, setPasswordInput] = useState('');
+    const [emailInput, setEmailInput] = useState(null);
+    const [passwordInput, setPasswordInput] = useState(null);
 
     const [errorWarning, setErrorWarning] = useState(false);
 
@@ -20,9 +21,15 @@ export const LoginItens = () => {
 
     const [visibility, setVisibility] = useState(false);
 
+    const [loading, setLoading] = useState(false)
+
     const localValidationEmail = () => {
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regexEmail.test(emailInput.toLocaleLowerCase());
+        if (emailInput !== null) {
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regexEmail.test(emailInput.toLocaleLowerCase());
+        } else {
+            return false
+        }
     };
 
     const localValidationPassword = () => {
@@ -39,11 +46,12 @@ export const LoginItens = () => {
                 client_id: '3mGWGtxIEKyhq_HGG4cq6hsTOd_zn1SuTD3_cafjUPc',
                 client_secret: '389JLi1Nd6DQ_soCI85C57ueTlMZ_JR7pRq6SJ0GaB0',
             }).then(async (res) => {
+                setLoading(false)
                 AsyncStorage.setItem('@Access_Token', res?.data?.access_token)
                 Navigation.navigate('Home')
             })
         } catch (error) {
-            if (error?.response || error.response?.status === 400) {
+            if (error?.response?.status === 422 || error.response?.status === 400) {
                 setMessage('Email ou senha inválidos!')
                 setErrorWarning(true);
             } else if (error.response?.status === 401) {
@@ -57,11 +65,13 @@ export const LoginItens = () => {
     };
 
     const validationInputs = () => {
-        setEmailInput('');
-        setPasswordInput('');
+        setEmailInput(null);
+        setPasswordInput(null);
+        setLoading(true)
         if (localValidationEmail() && localValidationPassword()) {
             apiValidationLogin();
         } else {
+            setLoading(false)
             setMessage('Email ou senha inválidos!')
             setErrorWarning(true);
         }
@@ -70,38 +80,59 @@ export const LoginItens = () => {
     return (
         <>
             <View style={styles.inputsContainer}>
-                <TextInput
-                    style={styles.inputLogin}
-                    placeholder="email"
-                    value={emailInput}
-                    onChangeText={value => {
-                        setErrorWarning(false)
-                        setEmailInput(value)
-                    }
-                    }
-                />
-                <TextInput
-                    style={styles.inputLogin}
-                    placeholder="senha"
-                    secureTextEntry={visibility ? false : true}
-                    value={passwordInput}
-                    onChangeText={value => {
-                        setErrorWarning(false)
-                        setPasswordInput(value)
-                    }}
-                />
-                <TouchableOpacity style={styles.eyeVisibilityButton} onPress={() => setVisibility(!visibility)}>
-                    <Icon
-                        name={visibility ? 'visibility' : 'visibility-off'}
-                        color="#000000"
-                        size={25}
+                <Animatable.View
+                    animation={errorWarning && emailInput === null ? 'shake' : null}
+                    useNativeDriver
+                >
+                    <TextInput
+                        style={
+                            [
+                                styles.inputLogin,
+                                { backgroundColor: errorWarning && emailInput === null ? '#EB8484' : '#FFFFFF' }
+                            ]
+                        }
+                        placeholder="email"
+                        value={emailInput}
+                        onChangeText={value => setEmailInput(value)}
+                        onFocus={() => setErrorWarning(false)}
                     />
-                </TouchableOpacity>
+                </Animatable.View>
+                <Animatable.View
+                    style={
+                        [
+                            styles.passwordInputContainer,
+                            { backgroundColor: errorWarning && passwordInput === null ? '#EB8484' : '#FFFFFF' }
+                        ]
+                    }
+                    animation={errorWarning && passwordInput === null ? 'shake' : null}
+                    useNativeDriver
+                >
+                    <TextInput
+                        style={styles.inputPassword}
+                        placeholder="senha"
+                        secureTextEntry={visibility ? false : true}
+                        value={passwordInput}
+                        onChangeText={value => setPasswordInput(value)}
+                        onFocus={() => setErrorWarning(false)}
+                    />
+                    <TouchableOpacity style={styles.eyeVisibilityButton} onPress={() => setVisibility(!visibility)}>
+                        <Icon
+                            name={visibility ? 'visibility' : 'visibility-off'}
+                            color="#000000"
+                            size={25}
+                        />
+                    </TouchableOpacity>
+                </Animatable.View>
             </View>
             <View style={styles.itensBottomContainer}>
-                {!!errorWarning && (
+                {errorWarning &&
                     <Text style={styles.textError}> {message} </Text>
-                )}
+                }
+                {loading &&
+                    <View style={styles.spinnerContainer}>
+                        <ActivityIndicator size="large" color='#FFFFFF' />
+                    </View>
+                }
                 <TouchableOpacity style={styles.buttonLogin} onPress={validationInputs}>
                     <Text style={styles.textButtonLogin}>ENTRAR</Text>
                 </TouchableOpacity>

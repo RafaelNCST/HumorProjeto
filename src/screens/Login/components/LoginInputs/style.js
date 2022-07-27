@@ -9,15 +9,23 @@ export const styles = StyleSheet.create({
         width: 321,
         marginTop: 21,
         borderRadius: 10,
-        backgroundColor: '#FFFFFF',
         justifyContent: 'center',
         alignItems: 'center',
         color: '#000000',
+        paddingLeft: 15,
     },
-    eyeVisibilityButton: {
-        position: 'absolute',
-        top: 98,
-        right: 10,
+    inputPassword: {
+        width: '90%',
+    },
+    passwordInputContainer: {
+        width: 321,
+        height: 46,
+        marginTop: 21,
+        flexDirection: 'row',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        paddingHorizontal: 10,
     },
     itensBottomContainer: {
         height: 128,
@@ -31,8 +39,13 @@ export const styles = StyleSheet.create({
         top: '25%',
         fontSize: 18,
         letterSpacing: 1,
-        color: '#ffd700',
+        color: '#EB8484',
         fontFamily: 'SourceSansPro-SemiBold',
+    },
+    spinnerContainer: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: '25%',
     },
     buttonLogin: {
         width: 133,

@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.8)'
     },
     modalBody: {
         width: '90%',
@@ -44,7 +45,7 @@ export const styles = StyleSheet.create({
     },
     textBody: {
         fontFamily: 'SourceSansPro-Regular',
-        fontSize: 15,
+        fontSize: 16,
         lineHeight: 30,
         color: '#969696',
 

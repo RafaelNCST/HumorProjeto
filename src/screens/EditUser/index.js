@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRoute } from '@react-navigation/native';
+import * as Animatable from 'react-native-animatable';
 
 import { ModalPhotoEdit } from './components/ModalPhotoEdit'
 import { ModalPickGenderInput } from './components/ModalPickerGender'
@@ -21,6 +22,8 @@ export const EditUserScreen = () => {
     const [name, setName] = useState(null)
     const [email, setEmail] = useState(null)
     const [birthDate, setBirthDate] = useState(null)
+    const [message, setMessage] = useState('')
+    const [error, setError] = useState(false)
 
     const birth = new Date(birthDate)
 
@@ -49,7 +52,12 @@ export const EditUserScreen = () => {
                 console.log('Tudo bem sucedido')
             })
         } catch (error) {
-            console.log(error)
+            if (error.response.status === 422) {
+                setMessage('Por favor, preencha todos os campos!')
+                setError(true)
+            } else {
+                console.log(error.response.status)
+            }
         }
     }
 
@@ -57,10 +65,14 @@ export const EditUserScreen = () => {
         setGender(genderChoosed)
     }
 
+    const handleErrorFocusInput = () => {
+        setError(false)
+    }
+
     return (
         <KeyboardAvoidingView
             behavior='position'
-            style={{ flex: 1 }}>
+            style={styles.bodyScreen}>
             <View style={styles.contentView}>
                 <View style={styles.topItens}>
                     <Image
@@ -70,23 +82,57 @@ export const EditUserScreen = () => {
                 </View>
                 <View style={styles.bottomItens}>
                     <View style={styles.allInputsContainer}>
-                        <View style={styles.inputContainer}>
+                        <Animatable.View
+                            style={styles.inputContainer}
+                            animation={error && name === null ? 'shake' : null}
+                            useNativeDriver
+                        >
                             <Text style={styles.textInput}>NOME</Text>
-                            <TextInput style={styles.inputInfos} onChangeText={text => setName(text)} />
-                        </View>
-                        <View style={styles.inputContainer}>
+                            <TextInput
+                                style={[styles.inputInfos, { borderColor: error && name === null ? '#e32636' : '#000000' }]}
+                                value={name}
+                                onChangeText={text => setName(text)}
+                                onFocus={handleErrorFocusInput}
+                            />
+                        </Animatable.View>
+                        <Animatable.View
+                            style={styles.inputContainer}
+                            animation={error && email === null ? 'shake' : null}
+                            useNativeDriver
+                        >
                             <Text style={styles.textInput}>E-MAIL</Text>
-                            <TextInput style={styles.inputInfos} onChangeText={text => setEmail(text)} />
-                        </View>
-                        <View style={styles.inputContainer}>
+                            <TextInput
+                                style={[styles.inputInfos, { borderColor: error && email === null ? '#e32636' : '#000000' }]}
+                                value={email}
+                                onChangeText={text => setEmail(text)}
+                                onFocus={handleErrorFocusInput}
+                            />
+                        </Animatable.View>
+                        <Animatable.View
+                            style={styles.inputContainer}
+                            animation={error && gender === null ? 'shake' : null}
+                            useNativeDriver
+                        >
                             <Text style={styles.textInput}>GÊNERO</Text>
-                            <ModalPickGenderInput callBackGenderSelected={callBackGenderSelected} />
-                        </View>
-                        <View style={styles.inputContainer}>
+                            <ModalPickGenderInput error={error} callBackGenderSelected={callBackGenderSelected} />
+                        </Animatable.View>
+                        <Animatable.View
+                            style={styles.inputContainer}
+                            animation={error && birthDate === null ? 'shake' : null}
+                            useNativeDriver
+                        >
                             <Text style={styles.textInput}>DATA DE NASCIMENTO</Text>
-                            <TextInput style={styles.inputInfos} onChangeText={text => setBirthDate(text)} />
-                        </View>
+                            <TextInput
+                                style={[styles.inputInfos, { borderColor: error && birthDate === null ? '#e32636' : '#000000' }]}
+                                value={birthDate}
+                                onChangeText={text => setBirthDate(text)}
+                                onFocus={handleErrorFocusInput}
+                            />
+                        </Animatable.View>
                     </View>
+                    {error &&
+                        <Text style={styles.messageError}>{message}</Text>
+                    }
                     <TouchableOpacity style={styles.saveButton} onPress={updateInformationsUser}>
                         <Text style={styles.textButton}>
                             SALVAR

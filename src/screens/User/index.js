@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { styles } from './style';
 import { ButtonLogout } from './components/ModalLogout'

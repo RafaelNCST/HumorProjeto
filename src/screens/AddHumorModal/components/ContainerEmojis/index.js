@@ -8,12 +8,14 @@ import { styles } from './style'
 
 export const ContainerEmojis = () => {
 
-    const [click, setClick] = useState(false);
-    const [num, setNum] = useState(0);
+    const [num, setNum] = useState(null);
 
     const handleClick = (index) => {
-        setNum(index)
-        setClick(true)
+        if (num == index) {
+            setNum(null)
+        } else {
+            setNum(index)
+        }
     }
 
     AsyncStorage.setItem('@Id_Emoji', String(num))
@@ -22,21 +24,21 @@ export const ContainerEmojis = () => {
         <View style={styles.containerEmoji}>
             {Object.keys(humorItens).map((item, index) => (
                 <View style={styles.emojiItem} key={index}>
-                    {click && index === num ? (
-                        <>
-                            <TouchableOpacity style={styles.activeCircle} onPress={() => handleClick(index)}>
-                                <Image style={styles.emojis} source={humorItens[item].image} />
-                            </TouchableOpacity>
-                            <Text style={styles.textEmojisActive}>{humorItens[item].estado}</Text>
-                        </>
-                    ) : (
-                        <>
-                            <TouchableOpacity style={styles.inactiveCircle} onPress={() => handleClick(index)}>
-                                <Image style={styles.emojis} source={humorItens[item].image} />
-                            </TouchableOpacity>
-                            <Text style={styles.textEmojisInactive}>{humorItens[item].estado}</Text>
-                        </>
-                    )}
+                    <>
+                        <TouchableOpacity
+                            style={
+                                [styles.circleBackGroundEmoji, { backgroundColor: index === num ? '#304FFE' : '#FFFFFF' }]
+                            }
+                            onPress={() => handleClick(index)}>
+                            <Image style={styles.emojis} source={humorItens[item].image} />
+                        </TouchableOpacity>
+                        <Text
+                            style={
+                                [styles.textEmojis, { color: index === num ? humorItens[item].cor : '#969696' }]
+                            }
+
+                        >{humorItens[item].estado}</Text>
+                    </>
                 </View>
             ))
             }

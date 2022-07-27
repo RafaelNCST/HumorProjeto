@@ -15,16 +15,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    inactiveCircle: {
-        backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 52,
-        height: 52,
-        borderRadius: 50
-    },
-    activeCircle: {
-        backgroundColor: '#304FFE',
+    circleBackGroundEmoji: {
         alignItems: 'center',
         justifyContent: 'center',
         width: 52,
@@ -35,16 +26,9 @@ export const styles = StyleSheet.create({
         width: 43,
         height: 43,
     },
-    textEmojisInactive: {
+    textEmojis: {
         fontFamily: 'SourceSansPro-Bold',
         marginTop: 3,
         fontSize: 12,
-        color: '#969696',
     },
-    textEmojisActive: {
-        fontFamily: 'SourceSansPro-Bold',
-        marginTop: 3,
-        fontSize: 12,
-        color: '#C801FA',
-    }
 })

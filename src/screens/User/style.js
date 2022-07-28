@@ -6,8 +6,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     itensContainer: {
-        width: '90%',
-        height: 383,
+        width: '100%',
+        height: 430,
         alignItems: 'center',
         justifyContent: 'space-between',
         marginTop: 84,
@@ -26,8 +26,25 @@ export const styles = StyleSheet.create({
         lineHeight: 45,
         color: '#000000',
     },
+    infosContainer: {
+        width: '80%',
+    },
+    textContainer: {
+        flexDirection: 'row'
+    },
+    textLabel: {
+        fontFamily: 'SourceSansPro-Bold',
+        color: '#000000',
+        fontSize: 14,
+    },
+    textInfos: {
+        marginLeft: 5,
+        fontSize: 14,
+        fontFamily: 'SourceSansPro-Regular',
+        color: '#000000',
+    },
     buttonsContainer: {
-        width: '95%',
+        width: '80%',
         height: 120,
         justifyContent: 'space-between'
     },

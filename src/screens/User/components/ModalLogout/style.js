@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'rgba(0,0,0,0.8)'
     },
-    modalBody: {
+    bodyModal: {
         width: '90%',
         height: 200,
         borderRadius: 25,

@@ -41,7 +41,7 @@ export const ButtonLogout = () => {
                 visible={visible}
             >
                 <View style={styles.bodyScreen}>
-                    <View style={styles.modalBody}>
+                    <View style={styles.bodyModal}>
                         <View style={styles.titlesContainer}>
                             <Text style={styles.textTitle}>
                                 Atenção

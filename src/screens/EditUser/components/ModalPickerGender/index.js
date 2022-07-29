@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableHighlight, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -14,8 +14,11 @@ export const ModalPickGenderInput = ({ error, callBackGenderSelected }) => {
     const handleModalPickGender = (gender) => {
         setSelected(gender)
         setVisible(false)
-        callBackGenderSelected(Genders[selected])
     }
+
+    useEffect(() => {
+        callBackGenderSelected(Genders[selected])
+    }, [selected])
 
     return (
         <>

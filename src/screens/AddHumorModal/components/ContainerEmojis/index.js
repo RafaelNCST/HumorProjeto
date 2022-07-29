@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
@@ -6,7 +6,7 @@ import { humorItens } from '../../../../helpers/humorItens'
 
 import { styles } from './style'
 
-export const ContainerEmojis = () => {
+export const ContainerEmojis = ({ callBackEmojis }) => {
 
     const [num, setNum] = useState(null);
 
@@ -18,7 +18,9 @@ export const ContainerEmojis = () => {
         }
     }
 
-    AsyncStorage.setItem('@Id_Emoji', String(num))
+    useEffect(() => {
+        callBackEmojis(num)
+    }, [num])
 
     return (
         <View style={styles.containerEmoji}>

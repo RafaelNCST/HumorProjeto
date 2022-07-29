@@ -12,8 +12,6 @@ import { months } from '../../../../helpers/months'
 export const HumorCard = ({ id, date, humor, description, actions }) => {
     const Navigation = useNavigation();
 
-    const [ac1, ac2, ac3] = actions
-
     const dateValue = new Date(date);
 
     const NavigationDynamicProps = () => {
@@ -42,20 +40,17 @@ export const HumorCard = ({ id, date, humor, description, actions }) => {
             </View>
             <View style={styles.containerBottom}>
                 <View style={styles.containerActions}>
-                    <View style={styles.containerActionItem}>
-                        <Icon name={activities[ac1.name].icon} color="#000000" size={20} />
-                        <Text style={styles.textActions}>{activities[ac1.name].name}</Text>
-                    </View>
-                    <View style={styles.pointerActions} />
-                    <View style={styles.containerActionItem}>
-                        <Icon name={activities[ac2.name].icon} color="#000000" size={20} />
-                        <Text style={styles.textActions}>{activities[ac2.name].name}</Text>
-                    </View>
-                    <View style={styles.pointerActions} />
-                    <View style={styles.containerActionItem}>
-                        <Icon name={activities[ac3.name].icon} color="#000000" size={20} />
-                        <Text style={styles.textActions}>{activities[ac3.name].name}</Text>
-                    </View>
+                    {actions.map((item, index) => (
+                        <View key={index} style={styles.containerActionItem}>
+                            <Icon name={activities[item.name].icon} color="#000000" size={20} />
+                            <Text style={styles.textActions}>{activities[item.name].name}</Text>
+                            {actions.length - 1 !== index &&
+                                <View style={styles.pointerActions} />
+                            }
+                        </View>
+                    ))
+
+                    }
                 </View>
                 <Text style={styles.textDescription}>
                     {description}

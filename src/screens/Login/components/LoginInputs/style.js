@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
         top: '25%',
         fontSize: 18,
         letterSpacing: 1,
-        color: '#EB8484',
+        color: '#DAAAAA',
         fontFamily: 'SourceSansPro-SemiBold',
     },
     spinnerContainer: {

@@ -1,9 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import LottieView from 'lottie-react-native'
+import LottieView from 'lottie-react-native';
+
 import { styles } from './style';
 
-export const ModalCheched = ({ handleVisibleCheckedModal }) => {
+export const ModalChecked = ({ handleVisibleCheckedModal }) => {
 
     const firstRun = useRef(true);
     const animation = useRef(null);
@@ -20,7 +21,7 @@ export const ModalCheched = ({ handleVisibleCheckedModal }) => {
                 <View style={styles.topItens}>
                     <View style={styles.itensMiddle}>
                         <LottieView
-                            source={require('../../../../assets/lottie/checked.json')}
+                            source={require('../../assets/lottie/checked.json')}
                             autoPlay={true}
                             loop={false}
                             ref={animation}

@@ -7,6 +7,7 @@ import { TopItens } from './components/TopItens';
 import { BottomItens } from './components/BottomItens';
 
 import { BackButton } from '../../components/BackButton'
+import { LoadingScreen } from '../../components/LoadingScreen'
 
 import { api } from '../../services/api'
 
@@ -54,11 +55,14 @@ export const DetailHumor = () => {
     return (
         <View style={styles.bodyScreen}>
             <BackButton nameIcon={'chevron-left'} backFunction={backFunction} />
-            {loading &&
+            {loading ? (
                 <View style={styles.itensContainer}>
                     <TopItens date={date} humor={humor} />
                     <BottomItens description={description} actions={actions} />
                 </View>
+            ) : (
+                <LoadingScreen />
+            )
             }
         </View>
     );

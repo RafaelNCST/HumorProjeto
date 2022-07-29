@@ -6,7 +6,7 @@ import * as Animatable from 'react-native-animatable';
 
 import { ModalPhotoEdit } from './components/ModalPhotoEdit'
 import { ModalPickGenderInput } from './components/ModalPickerGender'
-import { ModalCheched } from './components/ModalCheckedEdit';
+import { ModalChecked } from '../../components/ModalChecked';
 
 import { styles } from './style'
 import { api } from '../../services/api'
@@ -21,21 +21,16 @@ export const EditUserScreen = () => {
 
     const [photoChoose, setPhotoChoose] = useState(null);
     const [idPhoto, setIdPhoto] = useState(null);
-    const [gender, setGender] = useState(null)
-    const [name, setName] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [birthDate, setBirthDate] = useState(null)
+    const [gender, setGender] = useState('')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [birthDate, setBirthDate] = useState('')
     const [error, setError] = useState(false)
     const [message, setMessage] = useState('')
 
     const [visible, setVisible] = useState(false)
 
     const birth = new Date(birthDate)
-
-    const callBackIdPhoto = (key, photo) => {
-        setIdPhoto(key)
-        setPhotoChoose(photo)
-    }
 
     const validationName = () => {
         const regexName = /^[a-zA-Z]+$/
@@ -70,12 +65,18 @@ export const EditUserScreen = () => {
                     Authorization: `Bearer ${await AsyncStorage.getItem('@Access_Token')}`
                 }
             }).then(() => {
-                console.log('Tudo bem sucedido')
+                setVisible(true)
             })
         } catch (error) {
             if (error.response.status === 422) {
+                setName('')
+                setEmail('')
+                setBirthDate('')
+                setMessage('Algo deu errado, tente mais tarde!')
                 setError(true)
             } else {
+                setMessage('Algo deu errado, tente mais tarde!')
+                setError(true)
                 console.log(error.response.status)
             }
         }
@@ -83,28 +84,18 @@ export const EditUserScreen = () => {
 
 
     const validationInputs = () => {
-        if (name === null || gender === null || email === null || birthDate === null) {
+        if (name === '' || gender === '' || email === '' || birthDate === '') {
             setMessage('Por favor, preencha todos os campos!');
             setError(true);
         }
-        else if (validationName() === false && validationEmail() === false) {
-            setName(null)
-            setEmail(null)
-            setMessage('Preencha os campos corretamente')
+        else if (validationName() === false || validationEmail() === false) {
+            setName('')
+            setEmail('')
+            setMessage('Preencha os campos corretamente!')
             setError(true);
         }
-        else if (validationEmail() === false) {
-            setEmail(null)
-            setMessage('Preencha os campos corretamente')
-            setError(true)
-        }
-        else if (validationName() === false) {
-            setName(null)
-            setMessage('Preencha os campos corretamente')
-            setError(true)
-        }
         else {
-            setVisible(true)
+            updateInformationsUser();
         }
     }
 
@@ -119,6 +110,11 @@ export const EditUserScreen = () => {
     const handleVisibleCheckedModal = () => {
         setVisible(false)
         Navigation.goBack();
+    }
+
+    const callBackIdPhoto = (key, photo) => {
+        setIdPhoto(key)
+        setPhotoChoose(photo)
     }
 
     const dateConfigInput = (text) => {
@@ -151,19 +147,19 @@ export const EditUserScreen = () => {
                     transparent={true}
                     visible={visible}
                 >
-                    <ModalCheched handleVisibleCheckedModal={handleVisibleCheckedModal} />
+                    <ModalChecked handleVisibleCheckedModal={handleVisibleCheckedModal} />
                 </Modal>
 
                 <View style={styles.bottomItens}>
                     <View style={styles.allInputsContainer}>
                         <Animatable.View
                             style={styles.inputContainer}
-                            animation={error && name === null ? 'shake' : null}
+                            animation={error && name === '' ? 'shake' : null}
                             useNativeDriver
                         >
                             <Text style={styles.textInput}>NOME</Text>
                             <TextInput
-                                style={[styles.inputInfos, { borderColor: error && name === null ? '#e32636' : '#000000' }]}
+                                style={[styles.inputInfos, { borderColor: error && name === '' ? '#e32636' : '#000000' }]}
                                 value={name}
                                 onChangeText={text => setName(text)}
                                 onFocus={handleErrorFocusInput}
@@ -172,12 +168,12 @@ export const EditUserScreen = () => {
                         </Animatable.View>
                         <Animatable.View
                             style={styles.inputContainer}
-                            animation={error && email === null ? 'shake' : null}
+                            animation={error && email === '' ? 'shake' : null}
                             useNativeDriver
                         >
                             <Text style={styles.textInput}>E-MAIL</Text>
                             <TextInput
-                                style={[styles.inputInfos, { borderColor: error && email === null ? '#e32636' : '#000000' }]}
+                                style={[styles.inputInfos, { borderColor: error && email === '' ? '#e32636' : '#000000' }]}
                                 value={email}
                                 onChangeText={text => setEmail(text)}
                                 onFocus={handleErrorFocusInput}
@@ -186,7 +182,7 @@ export const EditUserScreen = () => {
                         </Animatable.View>
                         <Animatable.View
                             style={styles.inputContainer}
-                            animation={error && gender === null ? 'shake' : null}
+                            animation={error && gender === '' ? 'shake' : null}
                             useNativeDriver
                         >
                             <Text style={styles.textInput}>GÊNERO</Text>
@@ -194,12 +190,12 @@ export const EditUserScreen = () => {
                         </Animatable.View>
                         <Animatable.View
                             style={styles.inputContainer}
-                            animation={error && birthDate === null ? 'shake' : null}
+                            animation={error && birthDate === '' ? 'shake' : null}
                             useNativeDriver
                         >
                             <Text style={styles.textInput}>DATA DE NASCIMENTO</Text>
                             <TextInput
-                                style={[styles.inputInfos, { borderColor: error && birthDate === null ? '#e32636' : '#000000' }]}
+                                style={[styles.inputInfos, { borderColor: error && birthDate === '' ? '#e32636' : '#000000' }]}
                                 value={birthDate}
                                 keyboardType='number-pad'
                                 onChangeText={text => dateConfigInput(text)}

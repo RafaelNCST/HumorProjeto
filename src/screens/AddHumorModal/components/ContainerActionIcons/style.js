@@ -12,13 +12,17 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     gridItens: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         flex: 1,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
     },
     item: {
-        flex: 1,
+        height: 100,
+        width: 100,
+        marginVertical: 10,
         alignItems: 'center',
         justifyContent: 'center'
     },

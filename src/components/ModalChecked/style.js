@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#9B4B00',
+        backgroundColor: '#0C6217',
         borderBottomEndRadius: 20,
         borderBottomStartRadius: 20,
     },

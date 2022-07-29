@@ -50,11 +50,14 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 20,
     },
+    textContainer: {
+        flex: 1,
+    },
     textDescription: {
         lineHeight: 20,
         fontFamily: 'SourceSansPro-Regular',
         fontSize: 13,
-        color: '#000000'
+        color: '#000000',
     },
     buttonSaveCard: {
         width: '90%',

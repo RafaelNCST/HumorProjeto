@@ -52,12 +52,15 @@ export const LoginItens = () => {
             })
         } catch (error) {
             if (error?.response?.status === 422 || error.response?.status === 400) {
+                setLoading(false)
                 setMessage('Email ou senha inválidos!')
                 setErrorWarning(true);
             } else if (error.response?.status === 401) {
+                setLoading(false)
                 setMessage('Autorização negada!')
                 setErrorWarning(true);
             } else {
+                setLoading(false)
                 setMessage('Falha no Login, tente mais tarde')
                 setErrorWarning(true);
             }

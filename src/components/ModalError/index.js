@@ -11,7 +11,7 @@ export const ModalError = ({ handleVisibleErrorModal, message }) => {
 
     useEffect(() => {
         if (firstRun.current) {
-            animation.current.play(0, 50)
+            animation.current.play(0, 55)
         }
     }, [])
 

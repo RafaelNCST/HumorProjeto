@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 
 import { ModalPhotoEdit } from './components/ModalPhotoEdit'
 import { ModalPickGenderInput } from './components/ModalPickerGender'
 import { ModalChecked } from '../../components/ModalChecked';
+import { ButtonLogout } from './components/ModalLogout'
 
 import { styles } from './style'
 import { api } from '../../services/api'
@@ -15,13 +16,11 @@ export const EditUserScreen = () => {
 
     const route = useRoute();
 
-    const Navigation = useNavigation();
-
     const { photo } = route.params
 
     const [photoChoose, setPhotoChoose] = useState(null);
     const [idPhoto, setIdPhoto] = useState(null);
-    const [gender, setGender] = useState('')
+    const [gender, setGender] = useState(null)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [birthDate, setBirthDate] = useState('')
@@ -29,8 +28,9 @@ export const EditUserScreen = () => {
     const [message, setMessage] = useState('')
 
     const [visible, setVisible] = useState(false)
+    const [visibleLogout, setVisibleLogout] = useState(false)
 
-    const birth = new Date(birthDate)
+    const birth = new Date(birthDate.split('/').slice(0, 2).reverse().concat(birthDate.slice(6)).join('/'))
 
     const validationName = () => {
         const regexName = /^[a-zA-Z]+$/
@@ -64,7 +64,7 @@ export const EditUserScreen = () => {
                 headers: {
                     Authorization: `Bearer ${await AsyncStorage.getItem('@Access_Token')}`
                 }
-            }).then(() => {
+            }).then(resp => {
                 setVisible(true)
             })
         } catch (error) {
@@ -74,7 +74,11 @@ export const EditUserScreen = () => {
                 setBirthDate('')
                 setMessage('Algo deu errado, tente mais tarde!')
                 setError(true)
+                console.log(error)
             } else {
+                setName('')
+                setEmail('')
+                setBirthDate('')
                 setMessage('Algo deu errado, tente mais tarde!')
                 setError(true)
                 console.log(error.response.status)
@@ -109,7 +113,7 @@ export const EditUserScreen = () => {
 
     const handleVisibleCheckedModal = () => {
         setVisible(false)
-        Navigation.goBack();
+        setVisibleLogout(true)
     }
 
     const callBackIdPhoto = (key, photo) => {
@@ -150,6 +154,14 @@ export const EditUserScreen = () => {
                     <ModalChecked handleVisibleCheckedModal={handleVisibleCheckedModal} />
                 </Modal>
 
+                <Modal
+                    animationType='fade'
+                    transparent={true}
+                    visible={visibleLogout}
+                >
+                    <ButtonLogout />
+                </Modal>
+
                 <View style={styles.bottomItens}>
                     <View style={styles.allInputsContainer}>
                         <Animatable.View
@@ -182,7 +194,7 @@ export const EditUserScreen = () => {
                         </Animatable.View>
                         <Animatable.View
                             style={styles.inputContainer}
-                            animation={error && gender === '' ? 'shake' : null}
+                            animation={error && gender == null ? 'shake' : null}
                             useNativeDriver
                         >
                             <Text style={styles.textInput}>GÊNERO</Text>

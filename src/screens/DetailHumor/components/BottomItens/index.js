@@ -8,47 +8,23 @@ import { activities } from '../../../../helpers/activities'
 
 export const BottomItens = ({ description, actions }) => {
 
-    const [ac1, ac2, ac3] = actions;
-
     return (
         <View style={styles.bottomItens}>
             <View style={styles.containerActions}>
-                <View style={styles.itensActions}>
-                    <View style={styles.iconView}>
-                        <Icon
-                            name={activities[ac1.name].icon}
-                            color="#FFFFFF"
-                            size={30}
-                        />
+                {actions.map((item, index) => (
+                    <View key={index} style={styles.itensActions}>
+                        <View style={styles.iconView}>
+                            <Icon
+                                name={activities[item.name].icon}
+                                color="#FFFFFF"
+                                size={30}
+                            />
+                        </View>
+                        <Text style={styles.textActions}>
+                            {activities[item.name].name}
+                        </Text>
                     </View>
-                    <Text style={styles.textActions}>
-                        {activities[ac1.name].name}
-                    </Text>
-                </View>
-                <View style={styles.itensActions}>
-                    <View style={styles.iconView}>
-                        <Icon
-                            name={activities[ac2.name].icon}
-                            color="#FFFFFF"
-                            size={30}
-                        />
-                    </View>
-                    <Text style={styles.textActions}>
-                        {activities[ac2.name].name}
-                    </Text>
-                </View>
-                <View style={styles.itensActions}>
-                    <View style={styles.iconView}>
-                        <Icon
-                            name={activities[ac3.name].icon}
-                            color="#FFFFFF"
-                            size={30}
-                        />
-                    </View>
-                    <Text style={styles.textActions}>
-                        {activities[ac3.name].name}
-                    </Text>
-                </View>
+                ))}
             </View>
             <View style={styles.containerDescription}>
                 <Text style={styles.textDescription}>

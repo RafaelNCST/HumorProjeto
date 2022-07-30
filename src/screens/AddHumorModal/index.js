@@ -109,6 +109,7 @@ export const AddHumorModal = () => {
 
     const handleVisibleCheckedModal = () => {
         setVisible(false)
+        Navigation.goBack();
     }
 
     return (

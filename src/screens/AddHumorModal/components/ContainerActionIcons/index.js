@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -15,6 +14,9 @@ export const BoardIcons = ({ callBackIdActions }) => {
         if (arrayId.indexOf(key) !== -1) {
             setArrayId(arrayId.filter(item => item !== key))
         } else if (arrayId.length < 3) {
+            setArrayId([...arrayId, key])
+        } else if (arrayId.length === 3) {
+            arrayId.shift()
             setArrayId([...arrayId, key])
         }
     }

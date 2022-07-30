@@ -12,8 +12,8 @@ export const LoginItens = () => {
 
     const Navigation = useNavigation();
 
-    const [emailInput, setEmailInput] = useState(null);
-    const [passwordInput, setPasswordInput] = useState(null);
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
 
     const [errorWarning, setErrorWarning] = useState(false);
 
@@ -68,14 +68,18 @@ export const LoginItens = () => {
     };
 
     const validationInputs = () => {
-        setEmailInput(null);
-        setPasswordInput(null);
+        setPasswordInput('');
+        setEmailInput('');
         setLoading(true)
-        if (localValidationEmail() && localValidationPassword()) {
+        if (emailInput == '' || passwordInput == '') {
+            setLoading(false)
+            setMessage('Preencha todos os campos!')
+            setErrorWarning(true);
+        } else if (localValidationEmail() && localValidationPassword()) {
             apiValidationLogin();
         } else {
             setLoading(false)
-            setMessage('Email ou senha inválidos!')
+            setMessage('Email ou senha não seguem o padrão!')
             setErrorWarning(true);
         }
     };
@@ -84,14 +88,14 @@ export const LoginItens = () => {
         <>
             <View style={styles.inputsContainer}>
                 <Animatable.View
-                    animation={errorWarning && emailInput === null ? 'shake' : null}
+                    animation={errorWarning && emailInput === '' ? 'shake' : null}
                     useNativeDriver
                 >
                     <TextInput
                         style={
                             [
                                 styles.inputLogin,
-                                { backgroundColor: errorWarning && emailInput === null ? '#EB8484' : '#FFFFFF' }
+                                { backgroundColor: errorWarning && emailInput === '' ? '#EB8484' : '#FFFFFF' }
                             ]
                         }
                         placeholder="email"
@@ -104,10 +108,10 @@ export const LoginItens = () => {
                     style={
                         [
                             styles.passwordInputContainer,
-                            { backgroundColor: errorWarning && passwordInput === null ? '#EB8484' : '#FFFFFF' }
+                            { backgroundColor: errorWarning && passwordInput === '' ? '#EB8484' : '#FFFFFF' }
                         ]
                     }
-                    animation={errorWarning && passwordInput === null ? 'shake' : null}
+                    animation={errorWarning && passwordInput === '' ? 'shake' : null}
                     useNativeDriver
                 >
                     <TextInput
